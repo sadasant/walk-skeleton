@@ -42,6 +42,7 @@ end
 desc "Run all test on mruby"
 task :mtest => :check do
   ENV["RUBY_PLATFORM"] = "mruby"
+  FileUtils.rm_rf "out"
   FileUtils.mkdir_p "out"
   require File.dirname(File.realpath(__FILE__)) + '/test/test_helper.rb'
 
