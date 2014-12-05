@@ -5,6 +5,8 @@ require 'fileutils'
 require 'rake/testtask'
 require 'bundler/setup'
 
+Bundler.require(:default)
+
 SKELETON_ROOT = File.dirname(File.expand_path(__FILE__))
 SKELETON_OUT  = File.join(SKELETON_ROOT, "out", "skeleton.mrb")
 

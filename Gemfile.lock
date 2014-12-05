@@ -10,11 +10,6 @@ GIT
   specs:
     simplehttp (0.0.2)
 
-PATH
-  remote: .
-  specs:
-    skeleton (0.0.1)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -24,8 +19,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler (~> 1.7)
   da_funk!
-  rake (~> 10.0)
+  rake
   simplehttp!
-  skeleton!
