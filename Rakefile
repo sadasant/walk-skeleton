@@ -7,8 +7,8 @@ require 'bundler/setup'
 
 Bundler.require(:default)
 
-SKELETON_ROOT = File.dirname(File.expand_path(__FILE__))
-SKELETON_OUT  = File.join(SKELETON_ROOT, "out", "skeleton.mrb")
+APP_ROOT = File.dirname(File.expand_path(__FILE__))
+MAIN_OUT  = File.join(APP_ROOT, "out", "main.mrb")
 
 task :default => :build
 
@@ -25,20 +25,22 @@ task :check do
   end
 end
 
-desc "Compile skeleton to mrb"
+desc "Compile app to mrb"
 task :build => :check do
-  sh "mkdir -p #{File.join(SKELETON_ROOT, "out")}"
+  sh "mkdir -p #{File.join(APP_ROOT, "out")}"
+
+  files = FileList['lib/**/*']
   if ENV["MRBC"]
-    sh "#{ENV["MRBC"]} -o #{SKELETON_OUT} #{File.join(SKELETON_ROOT, "lib", "skeleton.rb")} "
+    sh "#{ENV["MRBC"]} -o #{MAIN_OUT} #{files} "
   else
-    sh "env mrbc -o #{SKELETON_OUT} #{File.join(SKELETON_ROOT, "lib", "skeleton.rb")} "
+    sh "env mrbc -o #{MAIN_OUT} #{files}"
   end
 end
 
 desc "Clobber/Clean"
 task :clean => :check do
   sh "mkdir -p out"
-  sh "rm -f #{SKELETON_OUT}"
+  sh "rm -f #{MAIN_OUT}"
 end
 
 desc "Run all test on mruby"
@@ -51,9 +53,9 @@ task :mtest => :check do
   Bundler.load.specs.each do |gem|
     sh "cp #{File.join(gem.full_gem_path, "out", gem.name)}.mrb out/#{gem.name}.mrb" if File.exists? "#{File.join(gem.full_gem_path, "out", gem.name)}.mrb"
   end
-  skeleton_files = FileList['lib/**/*']
+  app_files = FileList['lib/**/*']
   files = FileList["test/test_helper.rb"] + FileList['test/**/*test.rb'] + ["test/test_run.rb"]
-  if system("mrbc -o out/skeleton.mrb #{skeleton_files.uniq}") && system("mrbc -o out/test.mrb #{files.uniq}")
+  if system("mrbc -o out/main.mrb #{app_files.uniq}") && system("mrbc -o out/test.mrb #{files.uniq}")
     system("mruby -b out/test.mrb")
   end
 end
