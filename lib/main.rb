@@ -1,6 +1,6 @@
 class Main < Device
   def self.call
-    puts "MAIIIIINNN!"
+    puts "MAIN!"
     getc
   end
 
