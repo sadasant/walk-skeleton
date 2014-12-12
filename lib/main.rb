@@ -1,6 +1,6 @@
 class Main < Device
   def self.call
-    puts "MAIN2222"
+    puts "Luis KD minha DeuS?"
     getc
   end
 
