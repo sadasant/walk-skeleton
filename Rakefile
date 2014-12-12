@@ -29,6 +29,10 @@ desc "Compile app to mrb"
 task :build => :check do
   sh "mkdir -p #{File.join(APP_ROOT, "out")}"
 
+  Bundler.load.specs.each do |gem|
+    sh "cp #{File.join(gem.full_gem_path, "out", gem.name)}.mrb out/#{gem.name}.mrb" if File.exists? "#{File.join(gem.full_gem_path, "out", gem.name)}.mrb"
+  end
+
   files = FileList['lib/**/*']
   if ENV["MRBC"]
     sh "#{ENV["MRBC"]} -o #{MAIN_OUT} #{files} "
