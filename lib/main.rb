@@ -1,4 +1,4 @@
-class Skeleton < Device
+class Main < Device
   def self.call
     true
   end
