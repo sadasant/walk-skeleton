@@ -4,6 +4,7 @@ class Main < Device
     tracks = IO.read_card(30000)
     Display.clear
     p tracks[:track1]
+    p tracks[:track1]
     getc
   end
 
