@@ -1,3 +1,3 @@
 
-TestHelper.run
+DaFunk::Test.run
 

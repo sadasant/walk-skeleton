@@ -1,8 +1,8 @@
 require File.dirname(File.realpath(__FILE__)) + '/../test_helper.rb' unless Object.const_defined?(:MTest)
 
-class IntegrationSkeletonTest < TestHelper.case
+class MainTest < DaFunk::Test.case
   def test_true
-    assert Skeleton.call
+    assert Main.call
   end
 end
 

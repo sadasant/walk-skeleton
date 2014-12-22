@@ -1,9 +1,8 @@
-
 require File.dirname(File.realpath(__FILE__)) + '/../test_helper.rb' unless Object.const_defined?(:MTest)
 
-class SkeletonTest < TestHelper.case
+class SkeletonTest < DaFunk::Test.case
   def test_foo
-    assert_equal :foo, Skeleton.foo
+    assert_equal :foo, Main.foo
   end
 end
 

@@ -1,48 +1,15 @@
-class TestHelper
-  if Object.const_defined?(:MTest)
-    def self.case
-      engine::TestCase
-    end
 
-    def self.engine
-      MTest::Unit
-    end
+$LOAD_PATH.unshift "./out"
 
-    def self.run
-      engine.new.run
-    end
+require 'da_funk'
 
-    def self.setup
-      path = File.dirname(File.realpath(__FILE__))
+DaFunk::Test.configure do |t|
+  t.root_path = File.join(File.dirname(File.expand_path(__FILE__)), "..")
 
-      require path + '/../out/simplehttp.mrb'
-      require path + '/../out/da_funk.mrb'
-      require path + '/../out/skeleton.mrb'
-    end
+  if t.mruby?
+    t.libs = ["main.mrb"]
   else
-    def self.case
-      engine::TestCase
-    end
-
-    def self.engine
-      Test::Unit
-    end
-
-    def self.run; end
-
-    def self.setup
-      require 'fileutils'
-      require 'test/unit' if ENV["RUBY_PLATFORM"] != "mruby"
-
-      require 'simplehttp'
-      require 'da_funk'
-
-      path = File.dirname(File.realpath(__FILE__))
-
-      require path + '/../lib/skeleton.rb'
-    end
+    t.libs = FileList[File.join(t.root_path, 'lib/**/*.rb')]
   end
 end
-
-TestHelper.setup
 
