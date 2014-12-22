@@ -1,11 +1,10 @@
+require 'simplehttp'
+
 class Main < Device
   def self.call
     puts "Card..."
-    tracks = IO.read_card(30000)
-    Display.clear
-    p tracks[:track1]
-    p tracks[:track1]
     getc
+    true
   end
 
   def self.foo
