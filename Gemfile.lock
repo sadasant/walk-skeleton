@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/cloudwalkio/da_funk.git
-  revision: 3c7a1401f1c4afac78a6a4ac78e5fc34bd25a4f8
+  revision: 3d778c8c01894da6a307ea2c63b3cd305547473f
   specs:
-    da_funk (0.3.1)
+    da_funk (0.3.2)
       bundler (>= 1.7)
       rake (~> 10.4.2)
       rdoc (>= 4.1.1)
@@ -17,7 +17,7 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    json (1.8.1)
+    json (1.8.2)
     rake (10.4.2)
     rdoc (4.2.0)
       json (~> 1.4)
