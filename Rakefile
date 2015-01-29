@@ -16,6 +16,6 @@ end
 DaFunk::RakeTask.new :skeleton do |t|
   t.libs  = FileList['lib/**/*.rb']
   t.tests = FileList['test/**/*test.rb']
-  t.mrbc  = "cloudwalk build"
+  t.mrbc  = "cloudwalk compile"
   t.mruby = "cloudwalk run"
 end
